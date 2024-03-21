@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Site NSI - Jeux</title>
+    <link rel="icon" href="image/logo_navette.png">
+
+    <link rel="stylesheet" href="projet NSI style.css">
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        canvas {
+            background: #eee;
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <a id="haut"></a>
+
+    <header>
+        <a href="index.html"><img class="logo" src="image/logo_navette.png" alt="logo" /> </a>
+        <ul id="menu_principale">
+            <li class="element en_ligne clicable"><a href="index.html">Accueil</a></li>
+            <li class="element en_ligne clicable"><a href="avion de chasse.html">Avion de chasse</a></li>
+            <li class="element en_ligne clicable"><a href="espace.html">Espace</a></li>
+            <li class="element en_ligne ici"><a href="jeux_casse_brique.html">Jeux</a></li>
+            <li class="element en_ligne afficher nonSelectionnable"><a>Mes projets ▽</a></li>
+            <div class="caché colone">
+                <ul class="case_noir">
+                    <li class="element en_colone clicable"><a href="projet python.html">Mes projets Python</a></li>
+                    <li class="element en_colone clicable"><a href="projet circuit.html">Mes projets Circuit</a></li>
+                    <li class="element en_colone clicable"><a href="projet linux.html">Mes projets Linux</a></li>
+                </ul>
+            </div>
+            <li class="element en_ligne clicable"><a href="a propos.html">A propos</a></li>
+        </ul>
+    </header>
+
+    <section>
+        <p><br></p>
+        <h1>jeux de casse briques</h1>
+        <p><br></p>
+    </section>
+
+    <p><br></p>
+    <canvas id="myCanvas" width="480" height="320"></canvas>
+
+    <p><br></p>
+    <center><button id="startButton" class="bouton nonSelectionnable"> Start/Pause </button></center>
+    <p><br></p>
+    <figcaption>
+        Appuyer sur le bouton Start/Pause pour lancer le jeux.<br>Le paddle peut se diriger avec la souris mais aussi
+        avec la flèches du clavier.<br><a href="https://developer.mozilla.org/fr/docs/Games/Tutorials/2D_Breakout_game_pure_JavaScript" target="_blank">Jeu de
+        casse-briques 2D en pur JavaScript</a>
+    </figcaption>
+    <script>
+        // VARIABLES
+        const canvas = document.getElementById("myCanvas");
+        const ctx = canvas.getContext("2d");
+        const ballRadius = 10;
+        var x = canvas.width / 2;
+        var y = canvas.height - 30;
+        var angle = Math.PI / 4;
+        var vitesse = 4;
+        const paddle_hauteur = 10;
+        const paddle_largeur = 80;
+        var paddleX = (canvas.width - paddle_largeur) / 2;
+
+        var distance_millieu_paddle_balle_x = x - (paddleX + paddle_largeur / 2);
+        const coef_inclinaison_rebond_paddle = 1;  //80 deg max !
+
+        var rightPressed = false;
+        var leftPressed = false;
+
+        const brickRowCount = 5; //nombre bloque
+        const brickColumnCount = 3;
+        const brickWidth = 75;  //taille bloque
+        const brickHeight = 20;
+        const brickPadding = 10; // espacement entre les briques. verticale et horizontale.
+        const brickOffsetTop = 30;
+        const brickOffsetLeft = 30;
+
+        var score = 0;
+
+        var bricks = [];  // liste des briques
+        for (var c = 0; c < brickColumnCount; c++) {
+            bricks[c] = [];
+            for (var r = 0; r < brickRowCount; r++) {
+                bricks[c][r] = { x: 0, y: 0, status: 1 }; // statut : 1 et 2 = brique visible ; 0 = brique non visible.
+                bricks[0][r].status = 2
+            }
+        }
+
+
+        var gameIsRunning = false;
+
+        //ecouteur d'événement.
+        document.addEventListener("keydown", keyDownHandler, false);
+        document.addEventListener("keyup", keyUpHandler, false);
+        document.addEventListener("mousemove", mouseMoveHandler, false);
+
+
+        function startGame() {
+            // if (!gameIsRunning) {
+            gameIsRunning = !gameIsRunning;
+            requestAnimationFrame(draw);
+            // }
+        }
+
+        document.getElementById("startButton").addEventListener("click", startGame);
+
+
+        // FONCTIONS
+        function keyDownHandler(e) {
+            if (e.code == "ArrowRight") { rightPressed = true; }
+            else if (e.code == 'ArrowLeft') { leftPressed = true; }
+        }
+        function keyUpHandler(e) {
+            if (e.code == "ArrowRight") { rightPressed = false; }
+            else if (e.code == 'ArrowLeft') { leftPressed = false; }
+        }
+
+        function mouseMoveHandler(e) {
+            var relativeX = e.clientX - canvas.offsetLeft;
+            if (relativeX > 0 && relativeX < canvas.width) {
+                paddleX = relativeX - paddle_largeur / 2;
+            }
+        }
+
+        function collisionDetection() {
+            for (var c = 0; c < brickColumnCount; c++) {
+                for (var r = 0; r < brickRowCount; r++) {
+                    var brick = bricks[c][r];
+                    if (bricks[c][r].status == 1 || bricks[c][r].status == 2) {
+                        if (x + ballRadius > brick.x && x - ballRadius < brick.x + brickWidth && y + ballRadius > brick.y && y - ballRadius < brick.y + brickHeight) {
+                            angle = - angle + (Math.random() * 10 - 5) * Math.PI / 180; //aléatoire de 5 deg a droite et a gauche !
+                            brick.status -= 1;
+                            score++;
+                            if (score == brickRowCount * brickColumnCount + 5) {
+                                alert("Victoire !");
+                                document.location.reload();
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        function drawBall() {
+            ctx.beginPath();
+            ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
+            ctx.fillStyle = "red";
+            ctx.fill();
+            ctx.closePath();
+        }
+        function drawPaddle() {
+            ctx.beginPath();
+            ctx.rect(paddleX, canvas.height - paddle_hauteur, paddle_largeur, paddle_hauteur);
+            ctx.fillStyle = "black";
+            ctx.fill();
+            ctx.closePath();
+        }
+        function drawBricks() {
+            for (var c = 0; c < brickColumnCount; c++) {
+                for (var r = 0; r < brickRowCount; r++) {
+                    if (bricks[c][r].status == 1 || bricks[c][r].status == 2) {
+                        var brickX = (r * (brickWidth + brickPadding)) + brickOffsetLeft;
+                        var brickY = (c * (brickHeight + brickPadding)) + brickOffsetTop;
+                        bricks[c][r].x = brickX;
+                        bricks[c][r].y = brickY;
+                        ctx.beginPath();
+                        ctx.rect(brickX, brickY, brickWidth, brickHeight);
+                        if (bricks[c][r].status == 2) { ctx.fillStyle = "#9400D3"; }
+                        else { ctx.fillStyle = "#0095DD"; }
+                        ctx.fill();
+                        ctx.closePath();
+                    }
+                }
+            }
+        }
+        function drawScore() {
+            ctx.font = "16px Arial";
+            ctx.fillStyle = "black";
+            ctx.fillText("Score: " + score, 8, 20);
+        }
+
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawBricks();
+            drawBall();
+            drawPaddle();
+            drawScore();
+            collisionDetection();
+
+
+            if (x > canvas.width - ballRadius) {   //mur de droite 
+                angle = Math.PI - angle
+            }
+            if (x < ballRadius) {    //mur de  gauche
+                angle = -Math.PI - angle
+            }
+            if (y < ballRadius) {    //mur du haut
+                angle = - angle
+            }
+            else if (y > canvas.height - ballRadius - paddle_hauteur) {   // paddle
+                if (x + ballRadius > paddleX && x - ballRadius < paddleX + paddle_largeur) {
+                    distance_millieu_paddle_balle_x = x - (paddleX + paddle_largeur / 2);// max = 40
+
+                    // console.log(coef_inclinaison_rebond_paddle * distance_millieu_paddle_balle_x); // en deg
+                    //angle = 2 * Math.PI - angle - coef_inclinaison_rebond_paddle * distance_millieu_paddle_balle_x * Math.PI / 180;  //conversion en rad
+                    angle = Math.PI / 2 - coef_inclinaison_rebond_paddle * distance_millieu_paddle_balle_x * Math.PI / 180;
+                    y -= vitesse
+                }
+                else if (y > canvas.height - ballRadius) { // jeux perdu !
+                    alert("Perdu avec un score de : " + score);
+                    x = canvas.width / 2;
+                    y = canvas.height - 30;
+                    angle = Math.PI / 4;
+                    paddleX = (canvas.width - paddle_largeur) / 2;
+                    rightPressed = false;
+                    leftPressed = false;
+                    score = 0;
+                    bricks = [];  // liste des briques
+                    for (c = 0; c < brickColumnCount; c++) {
+                        bricks[c] = [];
+                        for (r = 0; r < brickRowCount; r++) {
+                            bricks[c][r] = { x: 0, y: 0, status: 1 }; // statut : 1 = brique visible ; 2 = brique non visible.
+                            bricks[0][r].status = 2
+                        }
+                    }
+
+                    gameIsRunning = false;
+                    requestAnimationFrame(draw);
+
+                    // document.location.reload();
+                }
+            }
+
+            if (rightPressed && paddleX < canvas.width - paddle_largeur) { paddleX += 7; }
+            else if (leftPressed && paddleX > 0) { paddleX -= 7; }
+
+            x += Math.cos(angle) * vitesse;
+            y -= Math.sin(angle) * vitesse; // - car 0 est vers le haut.
+
+            // console.log(angle)
+            if (gameIsRunning) {
+                requestAnimationFrame(draw);
+            }
+        }
+
+        draw();
+    </script>
+
+    <footer><a href="#haut">haut de page</a> - fait en 2022 - Grégoire L. - Copyright ©️</footer>
+
+</body>
+
+</html>

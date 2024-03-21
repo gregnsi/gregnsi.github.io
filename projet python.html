@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Site NSI - Python</title>
+    <link rel="icon" href="image/logo_navette.png">
+
+    <link rel="stylesheet" href="projet NSI style.css">
+</head>
+
+<body>
+	<a id="haut"></a>
+
+    <header>
+        <a  href="index.html" ><img class="logo" src="image/logo_navette.png" alt="logo"/> </a>
+        <ul id="menu_principale">
+            <li class="element en_ligne clicable"><a href="index.html">Accueil</a></li>
+            <li class="element en_ligne clicable"><a href="avion de chasse.html">Avion de chasse</a></li>
+			<li class="element en_ligne clicable"><a href="espace.html">Espace</a></li>
+            <li class="element en_ligne clicable"><a href="jeux_casse_brique.html">Jeux</a></li>
+            <li class="element en_ligne afficher nonSelectionnable ici" ><a>Mes projets ▼</a></li>
+                    <div class="caché colone">
+                        <ul class="case_noir">
+                            <li class="element en_colone ici"><a href="projet python.html">Mes projets Python</a></li>
+                            <li class="element en_colone clicable"><a href="projet circuit.html">Mes projets Circuit</a></li>
+                            <li class="element en_colone clicable"><a href="projet linux.html">Mes projets Linux</a></li>
+                        </ul>
+                    </div>
+            <li class="element en_ligne clicable"><a href="a propos.html">A propos</a></li>
+        </ul>
+    </header>
+
+    <center><h1  >Mes Différents projets Python</h1></center>
+    <section>
+        <h2>Le jeu du pendu</h2>
+        <p>Voici mon premier projet fait en NSI.</p>
+        <p class="text">L'utilisateur doit rentrer une lettre et le programme affiche le mot en cours ainsi que le pendu et les lettres déjà citées. Le mot est pris aléatoirement dans une liste du dictionnaire.
+        <br>Le programme supporte toutes les erreurs de l'utilisateur. Si celui ci met un caractère qui n'est pas dans l'alphabet ou qui à déjà été dit, le programme indique l'erreure et redemande une lettre.</p>
+        <p>Voici le code : <br></p>
+
+        <label for="btn" class="bouton nonSelectionnable">Afficher/ Cacher le code python</label>
+            <input type="checkbox" id="btn">
+                <p class="caché nonSelectionnable"><img src="image/code pendu.jpg" alt="code du pendu" width="80%" /></p>
+    
+        <p><br><br>Voici le rendu en Console :<br></p>
+        <img class="bord_arondis"  src="image/rendu console du pendu.jpg" alt="code du pendu" width="50%" />
+        <p></p>
+        <!-- <embed src="image/Présentation diaporama jeu du pendu, fait par Grégoire et Lea.2.pdf" type="application/pdf" width="1000px " height="500px"> -->
+        <p class="rouge">Attention il faut modifier le lien vers le fichier contenant la liste de mot  et installer Unidecode</p>
+        <p><a href="a_telecharger/pendu.zip" download="pendu.py" >Télécharger</a> version python</p>
+        <!-- <p><a href="a_telecharger/pendu_console.exe" download="pendu_console.exe" >Télécharger</a> version exe</p> -->
+        <p></p>
+
+	</section>
+
+    <section>
+        <h2>Conversion en code morse</h2>
+        <p>L'utilisateur donne le texte à chiffrer au programme, qui le crypte alors en code morse</p>
+        <img  src="image/code morse.jpg" alt="code morse" width="90%" />
+        <p></p>
+        <a href="a_telecharger/morse_version_simple.zip" download="morse_version_simple.py" >Télécharger</a>
+        <p></p>
+	</section>
+
+    <section>
+        <h2>Application graphique qui permet de coder et décoder un texte</h2>
+        <p>L'utilisateur donne le texte à chiffrer au programme, qui le code selon l'option choisi </p>
+        <img class="bord_arondis"  src="image/application_morse.jpg" alt="application code" width="40%" />
+        <p></p>
+        <p>Voici le code : <br></p>
+        <label for="btn2" class="bouton nonSelectionnable">Afficher/ Cacher le code python</label>
+        
+            <input type="checkbox" id="btn2">
+                    <p class="caché nonSelectionnable">
+                        Voici le code développée pour les conversion de chaine de caractère, avec différente fonction pour chiffrer/déchiffre les chaines de caractère. 
+                        <img src="image/code_morse_2.jpg" alt="code des fonction pour chiffrer" width="70%" />
+                        <br><br>Voici le code qui importe le premier fichier et crée l'application graphique.
+                        <img src="image/code_morse_application_graphique.jpg" alt="code de l'application" width="70%" />
+                    </p>
+            <p class="rouge" ><br> Le tout est regroupé dans un fichier zip, il faut installer la bibliothèque Pyperclip pour le presse papier.<br>Je conseil de lancer le fichier ' interface graphique '.</p>    
+
+        <a href="a_telecharger/application_pour_chiffrer_une_chaine_de_caractére.zip" download="application_pour_chiffrer_une_chaine_de_caractére.zip" >Télécharger</a>
+        <p></p>
+	</section>
+
+    <section>
+            <h2>Recueil de figures avec Turtle</h2>
+            <img  src="image/capture d'écran octogone.jpg" alt="figure Turtle" width="20%" />
+            <img  src="image/capture d'écran octogone2.jpg" alt="figure Turtle" width="20%" />
+            <img  src="image/capture d'écran octogone3.jpg" alt="figure Turtle" width="20%" />
+            <img  src="image/capture d'écran octogone4.jpg" alt="figure Turtle" width="20%" />
+            <img  src="image/capture d'écran octogone5.jpg" alt="figure Turtle" width="20%" />
+            <img  src="image/capture d'écran étoile3(2).jpg" alt="figure Turtle" width="20%" />
+            <img  src="image/capture d'écran étoile3(3).jpg" alt="figure Turtle" width="20%" />
+            <img  src="image/capture d'écran étoile3(4).jpg" alt="figure Turtle" width="20%" />
+            <img  src="image/capture d'écran étoile3.jpg" alt="figure Turtle" width="20%" />
+            <img  src="image/capture d'écran étoile4.jpg" alt="figure Turtle" width="20%" />
+            <img  src="image/capture d'écran étoile5.jpg" alt="figure Turtle" width="20%" />
+            <img  src="image/capture d'écran étoile6.jpg" alt="figure Turtle" width="20%" />
+            <p>Ouvrir le fichier python puis exécuter une fonction</p>
+            <a href="a_telecharger/dessin avec la tortue.zip" download="dessin.py" >Télécharger</a>
+            <p></p>
+        </section>
+        
+        <section>
+            <h2>Fractal</h2>
+            <img  src="image/fractal.jpg" alt="fractal" width="20%" />
+            <p></p>
+            <img  src="image/code fractal.jpg" alt="code fractal" width="50%" />
+            <p>Ouvrir le fichier python puis exécuter le</p>
+            <a href="a_telecharger/fractal.zip" download="dessin.py" >Télécharger</a>
+
+            <p></p>
+        </section>
+
+	<footer><p><a href="#haut">haut de page</a> - fait en 2022 - Grégoire L. - Copyright ©️</p></footer>
+
+</body>
+</html>

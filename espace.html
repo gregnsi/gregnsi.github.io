@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Site NSI - Espace</title>
+	<link rel="icon" href="image/logo_navette.png">
+
+    <link rel="stylesheet" href="projet NSI style.css">
+</head>
+
+<body>
+	<a id="haut"></a>
+
+    <header>
+        <a  href="index.html" ><img class="logo" src="image/logo_navette.png" alt="logo"/> </a>
+        <ul id="menu_principale">
+            <li class="element en_ligne clicable"><a href="index.html">Accueil</a></li>
+            <li class="element en_ligne clicable"><a href="avion de chasse.html">Avion de chasse</a></li>
+			<li class="element en_ligne ici"><a href="espace.html">Espace</a></li>
+            <li class="element en_ligne clicable"><a href="jeux_casse_brique.html">Jeux</a></li>
+            <li class="element en_ligne afficher nonSelectionnable" ><a>Mes projets ▽</a></li>
+                    <div class="caché colone">
+                        <ul class="case_noir">
+                            <li class="element en_colone clicable"><a href="projet python.html">Mes projets Python</a></li>
+                            <li class="element en_colone clicable"><a href="projet circuit.html">Mes projets Circuit</a></li>
+                            <li class="element en_colone clicable"><a href="projet linux.html">Mes projets Linux</a></li>
+                        </ul>
+                    </div>
+            <li class="element en_ligne clicable"><a href="a propos.html">A propos</a></li>
+        </ul>
+    </header>
+
+    <section>
+        <h1>L'image du jour de la Nasa avec leur API</h1>
+        <h2 id="titre" ></h2>
+        <div><div  id="image" alt="image du jour NASA"></div><figcaption>Attention, l'image est chargée avec la DEMO_KEY de l'API et ne peut donc être récupérée que 30 fois par adresse IP par heure.</figcaption></div><!-- class="bord_arondis" width="80%"  -->
+        <h2>explication : </h2>
+        <p id="explanation" class="text grand"></p>
+
+    <script>
+        fetch('https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY')
+            .then(response => response.json())
+            .then(data => {
+                let img = document.createElement('img'); // Crée un nouvel élément img
+                img.src = data.url; // Définit l'URL de l'image
+                img.classList.add('bord_arondis',); // Ajoute la classe "bord_arondis" à l'image
+                img.setAttribute('width', '60%'); // Ajoute l'attribut width avec la valeur "80%"
+                img.setAttribute('alt', 'image du jour de la NASA'); // Ajoute l'attribut alt avec la valeur "image du jour NASA"
+                document.getElementById('image').appendChild(img); // Ajoute l'image au div
+
+
+                let title = document.getElementById('titre'); // Obtient la balise pour le titre de l'image
+                title.textContent = data.title; // Définit le texte de la balise sur le titre de l'image
+
+                let explanation = document.getElementById('explanation')
+                explanation.textContent = data.explanation
+
+            })
+            .catch(error => console.error('Erreur:', error));
+    </script>
+    </section>
+    <section>
+		<h1>Le programme Artemis Américain, retour sur la Lune</h1>
+		<p class="text grand">Le programme Artemis est un programme spatial habité de la NASA, l'agence spatiale américaine, dont l'objectif est d'amener un équipage sur le sol lunaire d'ici 2026. À l'instigation du président américain Donald Trump, la date du retour de l'humain sur la Lune, que la NASA avait fixée à 2028 sans programmation clairement définie, a été avancée de quatre ans en avril 2019 avec des objectifs qui ont été précisés, donnant naissance au programme Artemis. Celui-ci doit déboucher sur une exploration durable du satellite, c'est-à-dire l'organisation de missions régulières dont l’aboutissement serait l'installation d'un poste permanent sur la Lune. Le programme doit également permettre de tester et de mettre au point les équipements et procédures qui seront mis en œuvre au cours des futures missions avec équipage à la surface de la planète Mars. La réalisation des missions du programme Artemis nécessite le développement de plusieurs engins spatiaux : le lanceur lourd Space Launch System (SLS), le vaisseau spatial Orion, dont la réalisation a débuté dans les années 2010 mais est marquée par des dérapages budgétaires et calendaires réguliers. L'architecture des missions repose sur la future station spatiale Lunar Orbital Platform-Gateway (LOP-G) qui, placée en orbite autour de la Lune, servira de relais entre la Terre et la surface de la Lune. 
+		<br><br>Pour remplir les objectifs ambitieux du programme Artemis dans le délai très court qui lui est imposé, la NASA sous-traite de manière particulièrement marquée la conception de composants importants (vaisseau lunaire HLS, modules de la station spatiale LOP-G, atterrisseurs des missions robotiques) ainsi que les prestations de lancement de ces engins et de ravitaillement de la station spatiale. En avril 2021, le développement du HLS est confié à la société SpaceX, qui proposait une version de son Starship baptisé Starship HLS. Selon le programme établi en novembre 2021, puis modifié en janvier 2024, Artemis III, lancée en 2026, sera la première mission qui amènera un équipage mixte de deux astronautes sur la Lune pour un séjour d'une durée de six jours et demi. Après cette date doivent être menées des missions caractérisées par des séjours plus longs, un équipage au sol de quatre personnes au lieu de deux, davantage d'équipements permettant d'étoffer le retour scientifique. Le vaisseau lunaire sera alors partiellement réutilisable. Les sites d'atterrissage retenus pour toutes ces missions se situent au pôle Sud de la Lune car les réserves de glace d'eau présentes dans les cratères perpétuellement à l'ombre présentent un intérêt stratégique dans la perspective de missions de longue durée. 
+		<br><br>Outre son délai très serré, le projet rencontre un problème budgétaire similaire à celui qui avait été fatal en 2009 au programme Constellation qui poursuivait les mêmes objectifs. En 2022, les trois premières missions du programme sont financées, mais la suite du programme, qui nécessite de lancer des développements immédiatement, ne dispose pas d'un budget suffisant. 
+		<br>Le premier vol du lanceur lourd SLS (mission Artemis I), qui constitue un jalon important du programme Artemis, a lieu le 16 novembre 2022. Début 2024 le débarquement d'un équipage sur la Lune est repoussé à septembre 2026 en raison des retards dans le développement et la mise au point des vaisseaux et équipements nécessaires. 
+		<br><br>
+		source <a href="https://fr.wikipedia.org/wiki/Programme_Artemis" target="blank">Wikipédia</a>
+		<br><br><br>
+		</p>
+		<img class="bord_arondis" src="image/Artemis_Phase_1.jpg" alt="Plan Artemis" width="80%">
+		<p><br></p>
+	</section>
+
+
+	<footer><p><a href="#haut">haut de page</a> - fait en 2022 - Grégoire L. - Copyright ©️</p></footer>
+
+</body>
+</html>
