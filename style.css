@@ -69,7 +69,7 @@ header {
 }
 
 /* ----------- Responsive ------------- */
-@media (max-width: 900px) {
+@media (max-width: 800px) {
     .menu-toggle {
         display: block;
     }
