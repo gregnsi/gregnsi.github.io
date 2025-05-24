@@ -1,0 +1,240 @@
+/* Logo principal */
+.logo {
+    width:  40px;
+    height: 40px;
+}
+
+/* En-tête */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;  /* met les element centré de facon vertical */
+    background-color: goldenrod;
+    padding: 0px 10px;  /*marge interne haut, coté*/
+    position: sticky;  /*reste quand on scrool*/
+    top: 0;  /*en haut*/
+    z-index: 2;  /*place la barre de navigation au 1er plan */
+   /* block-size: 60px; /*  taille du bandeau */
+}
+
+/* Bouton hamburger (caché par défaut) */
+.menu-toggle {
+    font-size: 28px;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    display: none;
+}
+
+/* Navigation */
+.navbar ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar li {
+    margin: 0 10px; /*espace entre les case */
+}
+
+.nav-link {   /*s'applique sur les cases  des liens*/
+    display: flex;
+    align-items: center;
+    padding: 0px 10px ; /* taille des marges des cases a droite et a gauche */
+    color: white;
+    text-decoration: none;
+    block-size: 60px; /* hauteur du bandeau */
+}
+
+.nav-link:hover {
+    background-color: #333;
+    color: red;
+    text-shadow: 2px 2px 5px rgba(255, 0, 0, 0.6);
+    transition: all 0.5s;  /*transition: all 0.6s;*/
+}
+
+.nav-link.active {
+    background-color: white;
+    color: black;
+    text-shadow: none;
+}
+
+/* Icônes des liens */
+.nav-icon {
+    width: 30px;
+    height: 30px;
+    margin-right: 8px;
+}
+
+/* ----------- Responsive ------------- */
+@media (max-width: 900px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    .navbar {
+        display: none;
+        width: 100%;
+        background-color: goldenrod;
+    }
+
+    .navbar.active {
+        display: block;
+    }
+
+    .navbar ul {
+        flex-direction: column;
+    }
+
+    .navbar li {
+        margin: 5px 0;
+        text-align: left;
+    }
+
+    .nav-link {
+        width: 100%;
+        justify-content: flex-start;
+    }
+}
+
+
+/******************* CORPS DU TEXTE *************************/
+
+#titre{font-size: 1.8rem;}
+#a_propos{font-size: 1.3rem;}
+.grand{font-size: 1.1rem;}
+.rouge{color: red;}
+.noir{margin: 10px;}
+.noir a{ color: black;}
+
+.bord_arondis{
+    border-radius:10px;
+    border:2px solid rgb(0, 0, 0);
+}
+.text{
+    /* font-family: 'Open Sans', sans-serif; */
+    text-align:left;
+    margin-left : 60px;
+    margin-right : 60px;
+}
+
+p{
+    font-size: 1.1rem;
+}
+
+ .aligner{   /*  pour "a propos" */
+    display : inline-block;
+    margin :auto;
+    text-align:left;
+    font-size: 1rem;
+}
+
+.pas_de_puce{
+    list-style-type:none;
+    margin:10px;
+    font-size: 1rem;
+}
+.pas_de_puce a{
+    color: black;
+    text-decoration: none;
+}
+
+
+
+body{
+    margin: 0;
+    /* background-color: rgb(255, 89, 0, 25%); */
+    background-image : url( image/fond.jpg ), linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)); /* #e66465, #9198e5*/
+    background-position: center;
+    background-attachment: fixed;
+    background-blend-mode: lighten;
+    /* background-repeat: repeat-y; */
+     background-size: cover; /*  pour couvrir toute la page */
+    /* background-color: rgba(255, 0, 0, 0.827); */
+
+
+} 
+
+section{
+    position: relative;
+    margin-top: 60px;
+    left: 10%;
+    width:80%;
+    border: 2px solid rgb(0, 0, 0);
+    text-align: center;
+    background-color: rgb(255, 255, 255);
+    border-radius:10px;
+    z-index:1;
+}
+/* section p{font-size: 1rem;} */
+
+figcaption {                     /* legende */
+    background-color: white;
+    color: black;
+    font: italic smaller sans-serif;
+    padding: 3px;
+    text-align: center;
+    margin-left : 60px;
+    margin-right : 60px;
+}
+
+video{
+    position: relative;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    width:80%; /* 16:9 */
+    height:auto;
+    border:2px solid rgb(0, 0, 0);
+    border-radius:4px;
+}
+
+/* bouton pour afficher le code du pendu*/
+.bouton{
+    padding: 5px;
+    border: 1px solid black;
+    background-color: gray;
+    border-radius:10px;
+    color: black;
+}
+.bouton:hover{border: 2px solid black;}
+
+
+.caché, input{
+    display: none;
+}
+.nonSelectionnable{ user-select: none}
+
+
+
+[id=btn]:checked +  p{
+    display: block; 
+}
+
+[id=btn2]:checked +  p{
+    display: block; 
+}
+
+
+
+/******** PIED DE PAGE ****************/
+
+footer{
+    display:flex;
+    justify-content: center;
+    padding: 20px;
+    background-color: white;
+    border: 2px solid rgb(0, 0, 0);
+    margin-top: 20px;
+
+}
+footer p{
+    margin:0px;
+}
+
+footer a{
+    color: black;
+    /* text-decoration: none;  */
+}
