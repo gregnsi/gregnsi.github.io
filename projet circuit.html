@@ -2,69 +2,83 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Site NSI - Circuit</title>
-    <link rel="icon" href="image/logo_navette.png">
-
-    <link rel="stylesheet" href="projet NSI style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site NSI - Accueil</title>
+    <link rel="icon" href="logo/logo_principale.png">
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-	<a id="haut"></a>
+<a id="haut"></a>
+<header>
+    <a href="index.html"><img class="logo" src="logo/logo_principale.png" alt="logo"/></a>
 
-    <header>
-        <a  href="index.html" ><img class="logo" src="image/logo_navette.png" alt="logo"/> </a>
-        <ul id="menu_principale">
-            <li class="element en_ligne clicable"><a href="index.html">Accueil</a></li>
-            <li class="element en_ligne clicable"><a href="avion de chasse.html">Avion de chasse</a></li>
-			<li class="element en_ligne clicable"><a href="espace.html">Espace</a></li>
-            <li class="element en_ligne clicable"><a href="jeux_casse_brique.html">Jeux</a></li>
-            <li class="element en_ligne afficher nonSelectionnable ici" ><a>Mes projets ▼</a></li>
-                    <div class="caché colone">
-                        <ul class="case_noir">
-                            <li class="element en_colone clicable"><a href="projet python.html">Mes projets Python</a></li>
-                            <li class="element en_colone ici"><a href="projet circuit.html">Mes projets Circuit</a></li>
-                            <li class="element en_colone clicable"><a href="projet linux.html">Mes projets Linux</a></li>
-                        </ul>
-                    </div>
-            <li class="element en_ligne clicable"><a href="a propos.html">A propos</a></li>
+    <!-- Bouton menu hamburger pour petit écran -->
+    <button class="menu-toggle" id="menu-toggle">&#9776;</button>
+
+    <nav class="navbar" id="navbar">
+        <ul>
+            <li><a href="index.html" class="nav-link"><img class="nav-icon" src="logo/logo_accueil.png" alt="">Accueil</a></li>
+            <li><a href="jeux_casse_brique.html" class="nav-link"><img class="nav-icon" src="logo/logo_jeux.png" alt="">Jeux</a></li>
+            <li><a href="projet python.html" class="nav-link"><img class="nav-icon" src="logo/logo_python.png" alt="">Projets Python</a></li>
+            <li><a href="projet circuit.html" class="nav-link active"><img class="nav-icon" src="logo/logo_circuit.png" alt="">Projets Circuit</a></li>
+            <li><a href="projet linux.html" class="nav-link"><img class="nav-icon" src="logo/logo_linux.png" alt="">Projets Linux</a></li>
+            <li><a href="a propos.html" class="nav-link"><img class="nav-icon" src="logo/logo_apropos.png" alt="">À propos</a></li>
         </ul>
-    </header>
+    </nav>
+</header>
 
-    <center><h1  >Mes Différents projets Arduino et circuit</h1></center>
+<script>
+    // JavaScript pour activer/désactiver le menu responsive
+    document.getElementById('menu-toggle').addEventListener('click', function () {
+        document.getElementById('navbar').classList.toggle('active');
+    });
+</script>
+
+    <center><h1  >Mes différents projets Arduino et circuit</h1></center>
     
     <section>
-        <h2>Projet avec des circuit logique</h2>
+        <h2>Projet avec des circuits logiques</h2>
         <img class="bord_arondis" src="image/Inverseur NSI.jpg" alt=" projet avec tinkarcad : inverseur" width="80%">
-        <figcaption>Projet avec tinkarcad : circuit électrique qui allume des leds avec 2 boutons a glissière, en utilisant 2 portes logique ' et '  et  ' ou '.<br>
+        <figcaption>Projet avec tinkarcad : circuit électrique qui allume des leds avec 2 boutons à glissière, en utilisant 2 portes logiques ' et '  et  ' ou '.<br>
             <a href="https://www.tinkercad.com/things/hlYKE8LWmB8?sharecode=kaTcRzKVhXHarEVlTdEEevgWPz5U6rD8MdH14dL3xdg" target="blank" >source du projet</a></figcaption>
     </section>
 
     <section>
         <h2>Test de communication entre un Arduino et un Microbit</h2>
         <img class="bord_arondis" src="image/tinkarcad_projet_2.jpg" alt=" projet avec tinkarcad : inverseur" width="80%">
-        <figcaption>Projet avec tinkarcad : Test de communication entre un Arduino et un Microbit en utilisant les port analogique; Opération qui c'est vite retrouvé complique car l'Arduino marche avec 5V et le microbit 3V.<br>
+        <figcaption>Projet avec tinkarcad : Test de communication entre un Arduino et un Microbit en utilisant les ports analogiques; Opération qui s'est vite retrouvée compliquée car l'Arduino marche avec 5V et le microbit 3V.<br>
             <a href="https://www.tinkercad.com/things/3ZTgyfyGVXh?sharecode=jdUIl6Af1zQAI1LR_tRLQrMAs4LPDrZGhmAGx8iaGdA" target="blank" >source du projet</a></figcaption>
     </section>
 
     <section>
         <h2>Carte programmable Arduino (Elegoo )</h2>
-        <img class="bord_arondis" src="image/arduino1.jpg" alt="image circuit Arduino" width=60%">
-        <figcaption>Une led RGB programmer avec la carte.</figcaption>
+        <img class="bord_arondis" src="image/arduino1.jpg" alt="image circuit Arduino" width=50%">
+        <figcaption>Une led RGB programmée avec la carte.</figcaption>
     </section>
 
     <section>
         <h2>Télémètre à ultrasons</h2>
-        <img class="bord_arondis" src="image/arduino2.jpg" alt="image circuit Arduino" width=60%">
-        <figcaption>Mesure de la distance avec un télémètre à ultrasons puis affichages du résultat sur la console de l'ordinateur.</figcaption>
+        <img class="bord_arondis" src="image/arduino2.jpg" alt="image circuit Arduino" width=50%">
+        <figcaption>Mesure de la distance avec un télémètre à ultrasons puis affichage du résultat sur la console de l'ordinateur.</figcaption>
     </section>
 
     <section>
         <h2>Fabriquer un thermomètre</h2>
-        <img class="bord_arondis" src="image/arduino3.jpg" alt="image circuit Arduino" width=60%">
-        <figcaption>Mesure de la température et de l'humidité, puis affichages des résultats sur l'écran LCD.</figcaption>
+        <img class="bord_arondis" src="image/arduino3.jpg" alt="image circuit Arduino" width=50%">
+        <figcaption>Mesure de la température et de l'humidité, puis affichage des résultats sur l'écran LCD.</figcaption>
     </section>
 
+    <section>
+        <h2>Utiliser un moteur incrémentale</h2>
+        <img class="bord_arondis" src="image/arduino4.jpg" alt="image circuit Arduino" width=50%">
+        <figcaption>Moteur incrémentale </figcaption>
+    </section>
 
+        <section>
+        <h2>Fabriquer un réveil</h2>
+        <img class="bord_arondis" src="image/arduino5.jpg" alt="image circuit Arduino" width=50%">
+        <figcaption>Un réveil qui affiche l'heure sur un affichage 7 segement. Quand l'heure de déclanchemnt est atteinte il sonne et alume une led pendant 30s. Cette heure est réglable avec le compteur incrémentale</figcaption>
+    </section>
     
 	<footer><p><a href="#haut">haut de page</a> - fait en 2022 - Grégoire L. - Copyright ©️</p></footer>
 

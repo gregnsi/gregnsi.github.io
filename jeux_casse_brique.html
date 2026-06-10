@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Site NSI - Jeux</title>
-    <link rel="icon" href="image/logo_navette.png">
-
-    <link rel="stylesheet" href="projet NSI style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site NSI - Accueil</title>
+    <link rel="icon" href="logo/logo_principale.png">
+    <link rel="stylesheet" href="style.css">
+</head>
     <style>
-        * {
+        *{
             padding: 0;
             margin: 0;
         }
@@ -19,33 +19,37 @@
             margin: 0 auto;
         }
     </style>
-</head>
 
 <body>
-    <a id="haut"></a>
+<a id="haut"></a>
+<header>
+    <a href="index.html"><img class="logo" src="logo/logo_principale.png" alt="logo"/></a>
 
-    <header>
-        <a href="index.html"><img class="logo" src="image/logo_navette.png" alt="logo" /> </a>
-        <ul id="menu_principale">
-            <li class="element en_ligne clicable"><a href="index.html">Accueil</a></li>
-            <li class="element en_ligne clicable"><a href="avion de chasse.html">Avion de chasse</a></li>
-            <li class="element en_ligne clicable"><a href="espace.html">Espace</a></li>
-            <li class="element en_ligne ici"><a href="jeux_casse_brique.html">Jeux</a></li>
-            <li class="element en_ligne afficher nonSelectionnable"><a>Mes projets ▽</a></li>
-            <div class="caché colone">
-                <ul class="case_noir">
-                    <li class="element en_colone clicable"><a href="projet python.html">Mes projets Python</a></li>
-                    <li class="element en_colone clicable"><a href="projet circuit.html">Mes projets Circuit</a></li>
-                    <li class="element en_colone clicable"><a href="projet linux.html">Mes projets Linux</a></li>
-                </ul>
-            </div>
-            <li class="element en_ligne clicable"><a href="a propos.html">A propos</a></li>
+    <!-- Bouton menu hamburger pour petit écran -->
+    <button class="menu-toggle" id="menu-toggle">&#9776;</button>
+
+    <nav class="navbar" id="navbar">
+        <ul>
+            <li><a href="index.html" class="nav-link"><img class="nav-icon" src="logo/logo_accueil.png" alt="">Accueil</a></li>
+            <li><a href="jeux_casse_brique.html" class="nav-link active"><img class="nav-icon" src="logo/logo_jeux.png" alt="">Jeux</a></li>
+            <li><a href="projet python.html" class="nav-link"><img class="nav-icon" src="logo/logo_python.png" alt="">Projets Python</a></li>
+            <li><a href="projet circuit.html" class="nav-link"><img class="nav-icon" src="logo/logo_circuit.png" alt="">Projets Circuit</a></li>
+            <li><a href="projet linux.html" class="nav-link"><img class="nav-icon" src="logo/logo_linux.png" alt="">Projets Linux</a></li>
+            <li><a href="a propos.html" class="nav-link"><img class="nav-icon" src="logo/logo_apropos.png" alt="">À propos</a></li>
         </ul>
-    </header>
+    </nav>
+</header>
+
+<script>
+    // JavaScript pour activer/désactiver le menu responsive
+    document.getElementById('menu-toggle').addEventListener('click', function () {
+        document.getElementById('navbar').classList.toggle('active');
+    });
+</script>
 
     <section>
         <p><br></p>
-        <h1>jeux de casse briques</h1>
+        <h1>Jeu de casse-briques</h1>
         <p><br></p>
     </section>
 
@@ -72,6 +76,7 @@
         const paddle_hauteur = 10;
         const paddle_largeur = 80;
         var paddleX = (canvas.width - paddle_largeur) / 2;
+        var audio = new Audio("rebond.mp3");
 
         var distance_millieu_paddle_balle_x = x - (paddleX + paddle_largeur / 2);
         const coef_inclinaison_rebond_paddle = 1;  //80 deg max !
@@ -143,6 +148,7 @@
                             angle = - angle + (Math.random() * 10 - 5) * Math.PI / 180; //aléatoire de 5 deg a droite et a gauche !
                             brick.status -= 1;
                             score++;
+                            audio.play();    // jouer le son
                             if (score == brickRowCount * brickColumnCount + 5) {
                                 alert("Victoire !");
                                 document.location.reload();
@@ -203,12 +209,15 @@
 
             if (x > canvas.width - ballRadius) {   //mur de droite 
                 angle = Math.PI - angle
+                audio.play();    // jouer le son
             }
             if (x < ballRadius) {    //mur de  gauche
                 angle = -Math.PI - angle
+                audio.play();    // jouer le son
             }
             if (y < ballRadius) {    //mur du haut
                 angle = - angle
+                audio.play();    // jouer le son
             }
             else if (y > canvas.height - ballRadius - paddle_hauteur) {   // paddle
                 if (x + ballRadius > paddleX && x - ballRadius < paddleX + paddle_largeur) {
@@ -217,7 +226,9 @@
                     // console.log(coef_inclinaison_rebond_paddle * distance_millieu_paddle_balle_x); // en deg
                     //angle = 2 * Math.PI - angle - coef_inclinaison_rebond_paddle * distance_millieu_paddle_balle_x * Math.PI / 180;  //conversion en rad
                     angle = Math.PI / 2 - coef_inclinaison_rebond_paddle * distance_millieu_paddle_balle_x * Math.PI / 180;
-                    y -= vitesse
+                    y -= vitesse;
+                    audio.play();    // jouer le son
+
                 }
                 else if (y > canvas.height - ballRadius) { // jeux perdu !
                     alert("Perdu avec un score de : " + score);

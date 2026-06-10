@@ -9,7 +9,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;  /* met les element centré de facon vertical */
-    background-color: goldenrod;
+    background-color: rgb(218, 165, 32);
     padding: 0px 10px;  /*marge interne haut, coté*/
     position: sticky;  /*reste quand on scrool*/
     top: 0;  /*en haut*/
@@ -49,9 +49,9 @@ header {
 }
 
 .nav-link:hover {
-    background-color: #333;
-    color: red;
-    text-shadow: 2px 2px 5px rgba(255, 0, 0, 0.6);
+    background-color: rgb(255, 232, 172);
+    color: rgb(192, 0, 0);
+    text-shadow: 2px 2px 5px rgba(255, 0, 0, 0.459);
     transition: all 0.5s;  /*transition: all 0.6s;*/
 }
 
@@ -77,7 +77,7 @@ header {
     .navbar {
         display: none;
         width: 100%;
-        background-color: goldenrod;
+        background-color: rgb(218, 165, 32);
     }
 
     .navbar.active {
@@ -102,7 +102,7 @@ header {
 
 /******************* CORPS DU TEXTE *************************/
 
-#titre{font-size: 1.8rem;}
+
 #a_propos{font-size: 1.3rem;}
 .grand{font-size: 1.1rem;}
 .rouge{color: red;}
@@ -128,13 +128,12 @@ p{
     display : inline-block;
     margin :auto;
     text-align:left;
-    font-size: 1rem;
 }
 
 .pas_de_puce{
     list-style-type:none;
     margin:10px;
-    font-size: 1rem;
+    font-size: 1.1rem;
 }
 .pas_de_puce a{
     color: black;
